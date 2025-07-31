@@ -20,19 +20,26 @@
 //   console.log(`Server running on port ${PORT}`);
 // });
 // server.js
+// server.js
+
+// server.js
+
 const express = require("express");
 const app = express();
 const PORT = 3000;
 
-// Middleware to parse JSON
+const userRoutes = require("./routes/userRoutes");
+const productRoutes = require("./routes/productRoutes");
+const cartRoutes = require("./routes/cartRoutes");
+
 app.use(express.json());
 
-// Import routes
-const productRoutes = require("./routes/productRoutes");
-
-// Use routes
+app.use("/users", userRoutes);
 app.use("/products", productRoutes);
+app.use("/cart", cartRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running at http://localhost:${PORT}`);
 });
+
+
