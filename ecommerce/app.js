@@ -24,22 +24,34 @@
 
 // server.js
 
+// const express = require("express");
+// const app = express();
+// const PORT = 3000;
+
+// const userRoutes = require("./routes/userRoutes");
+// const productRoutes = require("./routes/productRoutes");
+// const cartRoutes = require("./routes/cartRoutes");
+
+// app.use(express.json());
+
+// app.use("/users", userRoutes);
+// app.use("/products", productRoutes);
+// app.use("/cart", cartRoutes);
+
+// app.listen(PORT, () => {
+//   console.log(`Server is running at http://localhost:${PORT}`);
+// });
+
 const express = require("express");
 const app = express();
-const PORT = 3000;
 
-const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
-const cartRoutes = require("./routes/cartRoutes");
 
 app.use(express.json());
-
-app.use("/users", userRoutes);
 app.use("/products", productRoutes);
-app.use("/cart", cartRoutes);
 
+const PORT = 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
-
 

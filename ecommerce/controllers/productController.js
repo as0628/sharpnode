@@ -1,14 +1,39 @@
+// // controllers/productController.js
+
+// exports.getAllProducts = (req, res) => {
+//   res.send("Fetching all products");
+// };
+
+// exports.addProduct = (req, res) => {
+//   res.send("Adding a new product");
+// };
+
+// exports.getProductById = (req, res) => {
+//   const productId = req.params.id;
+//   res.send(`Fetching product with ID: ${productId}`);
+// };
 // controllers/productController.js
+const productService = require("../services/productService");
 
-exports.getAllProducts = (req, res) => {
-  res.send("Fetching all products");
+const getAllProducts = (req, res) => {
+  const result = productService.getAllProducts();
+  res.send(result);
 };
 
-exports.addProduct = (req, res) => {
-  res.send("Adding a new product");
+const getProductById = (req, res) => {
+  const { id } = req.params;
+  const result = productService.getProductById(id);
+  res.send(result);
 };
 
-exports.getProductById = (req, res) => {
-  const productId = req.params.id;
-  res.send(`Fetching product with ID: ${productId}`);
+const addProduct = (req, res) => {
+  const result = productService.addProduct();
+  res.send(result);
 };
+
+module.exports = {
+  getAllProducts,
+  getProductById,
+  addProduct
+};
+
