@@ -1,19 +1,30 @@
+// // routes/productRoutes.js
+// const express = require("express");
+// const router = express.Router();
+
+// const {
+//   getAllProducts,
+//   getProductById,
+//   addNewProduct,
+// } = require("../controllers/productController");
+
+// router.get("/", getAllProducts);
+// router.get("/:id", getProductById);
+// router.post("/", addNewProduct);
+
+// module.exports = router;
+// routes/productRoutes.js
 const express = require("express");
 const router = express.Router();
 
-// GET /products
-router.get("/", (req, res) => {
-  res.send("Fetching all products");
-});
+const {
+  getAllProducts,
+  getProductById,
+  addNewProduct,
+} = require("../controllers/productController");
 
-// POST /products
-router.post("/", (req, res) => {
-  res.send("Adding a new product");
-});
-
-// GET /products/:id
-router.get("/:id", (req, res) => {
-  res.send(`Fetching product with ID: ${req.params.id}`);
-});
+router.get("/", getAllProducts);
+router.get("/:id", getProductById);
+router.post("/", addNewProduct);
 
 module.exports = router;
