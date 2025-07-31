@@ -1,42 +1,27 @@
 const express = require('express');
 const app = express();
 
-// Middleware to parse JSON body (optional for POST requests)
-app.use(express.json());
-
-// Custom Logging Middleware
+// Middleware to log method and route
 app.use((req, res, next) => {
   console.log(`${req.method} request made to ${req.url}`);
-  next(); // Pass control to the next middleware/route
+  next();
 });
 
-// GET /products
-app.get('/products', (req, res) => {
-  res.send('Here is the list of all products.');
-});
+// Import routers
+const productRoutes = require('./routes/products');
+const categoryRoutes = require('./routes/categories');
 
-// POST /products
-app.post('/products', (req, res) => {
-  res.send('A new product has been added.');
-});
+// Use routers
+app.use('/products', productRoutes);
+app.use('/categories', categoryRoutes);
 
-// GET /categories
-app.get('/categories', (req, res) => {
-  res.send('Here is the list of all categories.');
-});
-
-// POST /categories
-app.post('/categories', (req, res) => {
-  res.send('A new category has been created.');
-});
-
-// Handle undefined routes
+// Handle 404
 app.use((req, res) => {
   res.status(404).send('404 Not Found');
 });
 
-// Start the server
+// Start server
 const PORT = 4000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
